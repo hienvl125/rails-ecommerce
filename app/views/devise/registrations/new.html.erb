@@ -1,0 +1,57 @@
+<div class="w-full max-w-lg mx-auto bg-white shadow-lg p-6 mt-10">
+  <h1 class="text-2xl text-center font-semibold mb-6">Sign Up</h1>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-4" }) do |f| %>
+    <div class="fields text-sm flex justify-between">
+      <div class="field w-1/2 mr-2">
+        <%= f.label :first_name, class: "block font-medium text-gray-900 mb-2" %>
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "first-name", class: "text-sm w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2.5", placeholder: "Bill" %>
+      </div>
+  
+      <div class="field text-sm w-1/2 ml-2">
+        <%= f.label :last_name, class: "block font-medium text-gray-900 mb-2" %>
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "last-name", class: "text-sm w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2.5", placeholder: "Gates" %>
+      </div>
+    </div>
+
+    <div class="field text-sm">
+      <%= f.label :your_email, class: "block font-medium text-gray-900 mb-2" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "text-sm w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2.5", placeholder: "name@company.com" %>
+    </div>
+
+    <div class="field text-sm">
+      <%= f.label :password, class: "block font-medium text-gray-900" %>
+      <% if @minimum_password_length %>
+        <div class="text-gray-900 mb-1 text-xs italic">(<%= @minimum_password_length %> characters minimum)</div>
+      <% end %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "text-sm w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2.5", placeholder: "******" %>
+    </div>
+
+    <div class="field text-sm">
+      <%= f.label :confirm_password, class: "block font-medium text-gray-900 mb-2" %>
+      <%= f.password_field :password_confirmation, autofocus: true, autocomplete: "new-password", class: "text-sm w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2.5", placeholder: "******" %>
+    </div>
+
+    <div class="field text-sm">
+      <%= f.label :choose_your_role, class: "block font-medium text-gray-900 mb-2" %>
+      <% User::roles.except(:admin).keys.each do |role_key| %>
+        <div>
+          <%= f.radio_button :role, role_key %>
+          <% if role_key == 'buyer' %>
+            <span class="ml-1 text-gray-900 text-xs">I'd like to join your platform as a <span class="font-semibold text-green-600">Buyer</span></span>
+          <% elsif role_key == 'seller' %>
+            <span class="ml-1 text-gray-900 text-xs">I'm interested in joining your platform as a <span class="font-semibold text-orange-600">Seller</span></span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= f.submit "Create an account", class: "text-sm bg-blue-600 text-white w-full px-5 py-2.5 rounded-lg hover:cursor-pointer hover:bg-blue-700" %>
+  <% end %>
+  <p class="text-gray-500 mt-5 text-xs text-center">
+    Already have an account?
+    <span>
+      <%= link_to "Login here", new_session_path(resource_name), class: "text-blue-600 hover:underline" %>
+    </span>
+  </p>
+</div>
