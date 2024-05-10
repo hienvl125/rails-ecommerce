@@ -12,8 +12,12 @@
   </head>
   <body class="bg-gray-50">
     <%= render "shared/flash_message" %>
-    <nav class="bg-pink-200 h-16">
-      Going to implement this UNAUTH navbar later
+    <nav class="bg-red-300 shadow-lg">
+      <div class="w-full max-w-screen-lg m-auto flex justify-center items-center h-16">
+        <%= link_to root_path do %>
+          <%= image_tag "/re-logo.png", class: "h-10" %>
+        <% end %>
+      </div>
     </nav>
     <%= yield %>
   </body>

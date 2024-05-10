@@ -4,19 +4,19 @@ class ApplicationController < ActionController::Base
   private 
 
   def determine_layout
-    if !user_signed_in? && sign_in_or_sign_up_or_forgot_password_action?
+    if !user_signed_in? && unauth_layout_action?
       "unauth"
     else
       "application"
     end
   end
 
-  def sign_in_or_sign_up_or_forgot_password_action?
-    return true if params[:controller] == "devise/sessions" && params[:action] == "new"
+  def unauth_layout_action?
+    return true if params[:controller] == "devise/sessions" && %w[new create].include?(params[:action])
 
-    return true if params[:controller] == "users/registrations" && params[:action] == "new"
+    return true if params[:controller] == "users/registrations" && %w[new create].include?(params[:action])
 
-    return true if params[:controller] == "devise/passwords" && params[:action] == "new"
+    return true if params[:controller] == "devise/passwords" && %w[new create edit update].include?(params[:action])
 
     return false 
   end
