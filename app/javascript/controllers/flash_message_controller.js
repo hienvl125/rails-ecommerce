@@ -13,5 +13,8 @@ export default class extends Controller {
 
   closeMessage() {
     this.messageTarget.classList.add('opacity-0')
+    setTimeout(() => {
+      this.messageTarget.remove()
+    }, 300)
   }
 }
