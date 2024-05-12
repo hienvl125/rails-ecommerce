@@ -12,12 +12,7 @@
   </head>
   <body class="bg-gray-50">
     <%= render "shared/flash_message" %>
-    <nav class="bg-cyan-200 h-16">
-      Going to implement this navbar later
-      <% if user_signed_in? %>
-        <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
-      <% end %>
-    </nav>
+    <%= render "shared/application_nav_bar" %>
     <%= yield %>
   </body>
 </html>

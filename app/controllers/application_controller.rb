@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   layout :determine_layout
 
-  private 
+  private
 
   def determine_layout
     if !user_signed_in? && unauth_layout_action?
