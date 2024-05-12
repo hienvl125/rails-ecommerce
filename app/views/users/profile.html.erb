@@ -1,0 +1,38 @@
+<div class="w-full max-w-screen-lg m-auto flex items-start justify-between py-3" >
+  <%= render "shared/user_side_bar" %>
+  <div class="flex-1 bg-white border rounded-lg mx-1 py-5 px-5">
+    <h1 class="text-3xl font-medium">My profile</h1>
+    <div class="mt-4">
+      <%= render "shared/model_error_messages", model: @user %>
+      <%= form_with model: @user, url: update_profile_path, method: :patch, html: { class: "space-y-4" }, data: { turbo: false } do |f| %>
+        <div class="field text-sm">
+          <%= f.label :first_name, class: "block font-medium text-gray-900 mb-2" %>
+          <%= f.text_field :first_name, autofocus: true, autocomplete: "first-name", class: "text-sm w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2.5", placeholder: "First name..." %>
+        </div>
+
+        <div class="field text-sm">
+          <%= f.label :last_name, class: "block font-medium text-gray-900 mb-2" %>
+          <%= f.text_field :last_name, autofocus: true, autocomplete: "last-name", class: "text-sm w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2.5", placeholder: "Last name..." %>
+        </div>
+
+        <div class="field text-sm">
+          <%= f.label :email, class: "block font-medium text-gray-900 mb-2" %>
+          <span class="block text-sm w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2.5">
+            <%= @user.email %>
+          </span>
+        </div>
+
+        <div class="field text-sm">
+          <%= f.label :role, class: "block font-medium text-gray-900 mb-2" %>
+          <span class="block text-sm w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2.5 capitalize">
+            <%= @user.role %>
+          </span>
+        </div>
+        
+        
+        <%= f.submit "Update profile", class: "text-sm bg-blue-600 text-white w-full px-5 py-2.5 rounded-lg hover:cursor-pointer hover:bg-blue-700" %>
+      <% end %>
+    </div>
+    
+  </div>
+</div>
