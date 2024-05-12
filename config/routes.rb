@@ -9,4 +9,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "pages#index"
+  get "profile" => "users#profile"
+  patch "update_profile" => "users#update_profile"
+  get "change_password" => "users#change_password"
+  patch "update_password" => "users#update_password"
+  get "purchase_history" => "users#purchase_history"
 end
