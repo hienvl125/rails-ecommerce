@@ -3,7 +3,7 @@
   { active_actions: ["change_password", "update_password"], name: "Change password", path: change_password_path },
   { active_actions: ["purchase_history"], name: "Purchase History", path: purchase_history_path },
 ] %>
-<div class="flex flex-col border rounded-lg mx-1 py-5 bg-white w-64">
+<div class="hidden sm:flex flex-col border rounded-lg mx-1 py-5 bg-white w-64">
   <% user_routes.each do |route| %>
     <% if route[:active_actions].include?(params[:action]) %>
       <span class="px-3 py-2 bg-blue-500 text-white"><%= route[:name] %></span>
