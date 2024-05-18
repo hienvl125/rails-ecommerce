@@ -32,20 +32,6 @@
       <%= f.password_field :password_confirmation, autofocus: true, autocomplete: "new-password", class: "text-sm w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2.5", placeholder: "******" %>
     </div>
 
-    <div class="field text-sm">
-      <%= f.label :choose_your_role, class: "block font-medium text-gray-900 mb-2" %>
-      <% User::roles.except(:admin).keys.each do |role_key| %>
-        <div>
-          <%= f.radio_button :role, role_key %>
-          <% if role_key == 'buyer' %>
-            <span class="ml-1 text-gray-900 text-xs">I'd like to join your platform as a <span class="font-semibold text-green-600">Buyer</span></span>
-          <% elsif role_key == 'seller' %>
-            <span class="ml-1 text-gray-900 text-xs">I'm interested in joining your platform as a <span class="font-semibold text-orange-600">Seller</span></span>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-
     <%= f.submit "Create an account", class: "text-sm bg-blue-600 text-white w-full px-5 py-2.5 rounded-lg hover:cursor-pointer hover:bg-blue-700" %>
   <% end %>
   <p class="text-gray-500 mt-5 text-xs text-center">
