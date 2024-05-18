@@ -1,7 +1,13 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["accountButton", "accountDropdownContent", "cartButton", "cartDropdownContent"]
+  static targets = [
+    "accountButton",
+    "accountDropdownContent",
+    "cartButton",
+    "cartDropdownContent",
+    "mobileMenu",
+  ]
 
   connect() {
     this.listenClickOutsideOfAccountTargets()
@@ -31,5 +37,10 @@ export default class extends Controller {
 
   onClickCartButton() {
     this.cartDropdownContentTarget.classList.toggle("invisible")
+  }
+
+  onClickMobileBar() {
+    this.mobileMenuTarget.classList.toggle("hidden")
+    
   }
 }

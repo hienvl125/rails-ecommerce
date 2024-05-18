@@ -1,11 +1,13 @@
 <nav data-controller="nav-bar" class="shadow-md bg-white">
-  <div class="w-full max-w-screen-lg m-auto flex justify-between items-center h-16 px-3">
+  <div class="w-full max-w-screen-lg m-auto flex justify-between flex-row-reverse sm:flex-row items-center h-16 px-3">
     <%= link_to root_path do %>
       <div class="bg-red-300 p-3 rounded-full">
         <%= image_tag "/re-logo.png", class: "h-6" %>
       </div>
     <% end %>
-    <div class="flex items-center">
+    <%#------------- Desktop navbar -------------%>
+    <div class="hidden sm:flex items-center">
+      <%#------------- Search bar -------------%>
       <div class="flex items-center border rounded-lg py-0 px-2 bg-gray-50 mr-2">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.1" stroke="currentColor" class="w-6 h-6 text-gray-600">
           <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
@@ -14,6 +16,7 @@
         <input type="text" placeholder="Search your products..." class="border-0 text-sm focus:ring-0 bg-gray-50"  />
       </div>
 
+      <%#------------- Account button -------------%>
       <div class="relative">
         <div data-action="click->nav-bar#onClickAccountButton" data-nav-bar-target="accountButton" class="flex hover:cursor-pointer hover:bg-gray-100 py-1 px-2 rounded-lg mr-2">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.1" stroke="currentColor" class="w-7 h-7 text-gray-600 mr-1">
@@ -27,9 +30,10 @@
             <div class="flex flex-col py-5">
               <p class="text-md font-medium py-2 px-4"><%= current_user.email %></p>
               <%= link_to "Your profile", profile_path, class: "hover:bg-gray-100 py-3 px-4" %>
-              <a href="#" class="hover:bg-gray-100 py-3 px-4">Purchase history</a>
+              <%= link_to "Change password", change_password_path, class: "hover:bg-gray-100 py-3 px-4" %>
+              <%= link_to "Purchase history", purchase_history_path, class: "hover:bg-gray-100 py-3 px-4" %>
               <% if current_user.admin? || current_user.buyer? %>
-                <a href="#" class="hover:bg-gray-100 py-3 px-4">Dashboard</a>
+                <%= link_to "Dashboard", "#", class: "hover:bg-gray-100 py-3 px-4" %>
               <% end %>
               <hr />
               <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "hover:bg-gray-100 py-3 px-4" %>
@@ -43,6 +47,7 @@
         </div>
       </div>
 
+      <%#------------- Cart button -------------%>
       <div class="relative">
         <div data-action="click->nav-bar#onClickCartButton" data-nav-bar-target="cartButton" class="hover:cursor-pointer hover:bg-gray-100 py-1 px-2 rounded-lg">
           <div class="-top-1 absolute -right-2">
@@ -58,5 +63,57 @@
         </div>
       </div>
     </div>
+
+    <div class="flex sm:hidden">
+      <button data-action="click->nav-bar#onClickMobileBar">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <%# Mobile Navbar %>
+  <div data-nav-bar-target="mobileMenu" class="hidden w-full bg-white">
+    <div class="flex items-center">
+      <%#------------- Search bar -------------%>
+      <div class="flex flex-1 items-center py-0 px-2 bg-gray-50 border rounded-lg ml-3">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.1" stroke="currentColor" class="w-6 h-6 text-gray-600">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+        </svg>
+
+        <input type="text" placeholder="Search your products..." class="flex-1 border-0 focus:ring-0 bg-gray-50"  />
+      </div>  
+      <%#------------- Cart button -------------%>
+      <div class="relative ml-1 mr-3">
+        <%= link_to "#" do %>
+          <div class="py-1 px-2 rounded-lg">
+            <div class="-top-1 absolute -right-2">
+              <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 py-3 px-4 text-xs text-white">99+</p>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.1" stroke="currentColor" class="w-7 h-7 text-gray-600">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+            </svg>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <% if user_signed_in? %>
+      <%= link_to "Profile", profile_path, class: "block w-full text-lg font-medium hover:bg-gray-100 py-2 px-4" %>
+      <hr />
+      <%= link_to "Change password", change_password_path, class: "block w-full text-lg font-medium hover:bg-gray-100 py-2 px-4" %>
+      <hr />
+      <%= link_to "Purchase history", purchase_history_path, class: "block w-full text-lg font-medium hover:bg-gray-100 py-2 px-4" %>
+      <hr />
+      <% if current_user.admin? || current_user.buyer? %>
+        <%= link_to "Dashboard", "#", class: "block w-full text-lg font-medium hover:bg-gray-100 py-2 px-4" %>
+        <hr />
+      <% end %>
+      <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "block w-full text-lg font-medium hover:bg-gray-100 py-2 px-4" %>
+    <% else %>
+      <%= link_to "Login", new_user_session_path, class: "block w-full text-lg font-medium hover:bg-gray-100 py-2 px-4" %>
+      <hr />
+      <%= link_to "Register", new_user_registration_path, class: "block w-full text-lg font-medium hover:bg-gray-100 py-2 px-4" %>
+    <% end %>
   </div>
 </nav>
