@@ -1,0 +1,38 @@
+
+<nav aria-label="Page navigation example">
+  <ul class="inline-flex -space-x-px text-sm">
+    <% if pagy.prev.present? %>
+      <li>
+        <%= link_to "Previous", dashboard_categories_path(page: pagy.prev), class: "flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700" %>
+      </li>
+    <% else %>
+      <li>
+        <p class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-gray-50 border border-e-0 border-gray-300 rounded-s-lg">Previous</p>
+      </li>
+    <% end %>
+    <% pagy.series.each do |page_number| %>
+      <li>
+        <% if page_number.is_a?(Integer) %>
+          <%= link_to page_number, dashboard_categories_path(page: page_number), class: "flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700" %>
+        <% elsif page_number.is_a?(String) %>
+          <p class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">
+            <%= page_number %>
+          </p>
+        <% elsif item == :gap %>
+          <p class="flex items-center justify-center px-3 h-8 text-gray-500 border border-gray-300 bg-white">
+            ...
+          </p>
+        <% end %>
+      </li>
+    <% end %>
+    <% if pagy.next.present? %>
+      <li>
+        <%= link_to "Next", dashboard_categories_path(page: pagy.next), class: "flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700" %>
+      </li>
+    <% else %>
+      <li>
+        <p class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-gray-50 border border-gray-300 rounded-e-lg">Next</p>
+      </li>
+    <% end %>
+  </ul>
+</nav>
