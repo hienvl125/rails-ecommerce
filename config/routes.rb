@@ -14,4 +14,8 @@ Rails.application.routes.draw do
   get "change_password" => "users#change_password"
   patch "update_password" => "users#update_password"
   get "purchase_history" => "users#purchase_history"
+
+  namespace :dashboard do
+    resources :categories
+  end
 end
