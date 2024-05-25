@@ -1,0 +1,20 @@
+<%- dashboard_routes = [
+  { controller_name: 'categories', name: 'Categories', path: dashboard_categories_path },
+  { controller_name: 'products',   name: 'Products',   path: 'to-be-defined' },
+  { controller_name: 'orders',     name: 'Orders',     path: 'to-be-defined' },
+] %>
+<div class="hidden lg:block bg-gray-700 text-white shadow-md w-64 h-screen fixed z-40">
+  <ul class="mt-2 space-y-2">
+    <% dashboard_routes.each do |route_param| %>
+      <% if controller_name == route_param[:controller_name] %>
+        <li class="font-medium px-4 py-2 text-lg bg-gray-50 text-gray-700 m-2 rounded-md">
+          <%= route_param[:name] %>
+        </li>
+      <% else %>
+        <li class="font-medium px-4 py-2 text-lg hover:bg-gray-100 hover:text-gray-700 m-2 rounded-md">
+          <%= link_to route_param[:name], route_param[:path] %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
