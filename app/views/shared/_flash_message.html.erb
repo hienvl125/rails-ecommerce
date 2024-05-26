@@ -13,7 +13,7 @@
 
 <div data-controller="flash-message">
   <% flash.each do |key, value| %>
-  <div data-flash-message-target="message" class="fixed z-50 flex justify-between items-center h-auto top-5 shadow-lg right-5 left-5 md:left-auto md:min-w-96 p-4 text-sm rounded-lg transition-opacity ease-out duration-300 <%= alert_classes[key] %>" role="<%= key %>">
+  <div data-flash-message-target="message" class="fixed z-9999 flex justify-between items-center h-auto top-5 shadow-lg right-5 left-5 md:left-auto md:min-w-96 p-4 text-sm rounded-lg transition-opacity ease-out duration-300 <%= alert_classes[key] %>" role="<%= key %>">
     <span class="font-medium"><%= value %></span>
     <button class="ml-3 p-1 rounded-lg <%= close_button_classes[key] %>" data-action="click->flash-message#closeMessage"">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">

@@ -12,6 +12,12 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+      zIndex: {
+        '99': '99',
+        '999': '999',
+        '9999': '9999',
+        '99999': '99999',
+      }
     },
   },
   plugins: [

@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   get "purchase_history" => "users#purchase_history"
 
   namespace :dashboard do
-    resources :categories
+    resources :categories, param: :slug
   end
 end

@@ -76,3 +76,5 @@ gem "letter_opener", "~> 1.10"
 gem "letter_opener_web", "~> 2.0"
 
 gem "aws-sdk-s3", require: false
+
+gem "pagy", "~> 8.4"

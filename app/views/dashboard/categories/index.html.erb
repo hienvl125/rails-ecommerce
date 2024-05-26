@@ -1,0 +1,61 @@
+<h1 class="text-4xl font-medium text-center mt-5">Categories</h1>
+<%= link_to "Add new category", new_dashboard_category_path, class: "bg-blue-600 hover:bg-blue-700 text-sm text-white rounded-lg mt-2 py-2 px-4 inline-block" %>
+<% if @categories.blank? %>
+  <h1 class="text-center text-2xl italic text-gray-500">No categories found</h1>
+<% else %>
+  <div data-controller="dashboard--category" class="relative overflow-x-auto shadow-md sm:rounded-lg mt-2">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700">
+        <tr>
+          <th scope="col" class="px-4 py-2">
+            ID
+          </th>
+          <th scope="col" class="px-4 py-2">
+            Name
+          </th>
+          <th scope="col" class="px-4 py-2">
+            Slug
+          </th>
+          <th scope="col" class="px-4 py-2">
+            Image
+          </th>
+          <th scope="col" class="px-4 py-2">
+            Description
+          </th>
+          <th scope="col" class="px-4 py-2">
+            Action
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b">
+            <th scope="row" class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              <%= category.id %>
+            </th>
+            <td class="px-4 py-2">
+              <%= category.name %>
+            </td>
+            <td class="px-4 py-2">
+              <%= category.slug %>
+            </td>
+            <td class="px-4 py-2">
+              <%= image_tag category.image, width: 30 %>
+            </td>
+            <td class="px-4 py-2">
+              <%= category.description || 'Empty' %>
+            </td>
+            <td class="px-4 py-2 space-x-2">
+              <%= link_to "Edit", edit_dashboard_category_path(category.slug), class: "font-medium text-blue-600 hover:underline" %>
+              <%= link_to "Delete", dashboard_category_path(category.slug), class: "font-medium text-red-600 hover:underline", data: { turbo_method: :delete, turbo_confirm: "Are you sure to delete it?" } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="flex justify-start mt-2">
+    <%= render "shared/pagy_navigation", pagy: @pagy %>
+  </div>
+<% end %>
+
